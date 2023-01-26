@@ -31,6 +31,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   GlobalKey<FlutterMentionsState> key = GlobalKey<FlutterMentionsState>();
+  FocusNode _node = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title!),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          RaisedButton(
+          ElevatedButton(
             child: Text('Get Text'),
             onPressed: () {
               print(key.currentState!.controller!.markupText);
@@ -50,10 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             child: FlutterMentions(
               key: key,
-              suggestionPosition: SuggestionPosition.Top,
-              maxLines: 5,
-              minLines: 1,
               decoration: InputDecoration(hintText: 'hello'),
+              focusNode: _node,
               mentions: [
                 Mention(
                     trigger: '@',
