@@ -453,7 +453,7 @@ class FlutterMentionsState extends State<FlutterMentions> {
     // NOTE: ATM we display the suggestion box automatically based on spacing.
     // If we have enough space to display it above the text then we display it above, otherwise display it below
 
-    return (spaceFromTop + widget.topScreenPadding) < widget.suggestionListHeight;
+    return spaceFromTop < (widget.suggestionListHeight + widget.topScreenPadding);
   }
 
   void showOverlay(String textBefore) {
