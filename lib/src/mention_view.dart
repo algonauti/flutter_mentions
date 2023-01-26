@@ -531,6 +531,7 @@ class FlutterMentionsState extends State<FlutterMentions> {
     if (widget.removeMentionDisplayOnDelete) {
       controller!.removeListener(inputListeners);
     }
+    _suggestionTagOverlayEntry?.remove();
     super.dispose();
   }
 
