@@ -1,59 +1,60 @@
 part of flutter_mentions;
 
 class FlutterMentions extends StatefulWidget {
-  FlutterMentions(
-      {required this.mentions,
-      Key? key,
-      this.defaultText,
-      this.suggestionListHeight = 300.0,
-      this.onMarkupChanged,
-      this.onMentionAdd,
-      this.onSearchChanged,
-      this.leading = const [],
-      this.trailing = const [],
-      this.suggestionListDecoration,
-      this.focusNode,
-      this.decoration = const InputDecoration(),
-      this.keyboardType,
-      this.textInputAction,
-      this.textCapitalization = TextCapitalization.none,
-      this.style,
-      this.strutStyle,
-      this.textAlign = TextAlign.start,
-      this.textDirection,
-      this.autofocus = false,
-      this.autocorrect = true,
-      this.enableSuggestions = true,
-      this.maxLines,
-      this.minLines,
-      this.expands = false,
-      this.readOnly = false,
-      this.showCursor,
-      this.maxLength,
-      this.maxLengthEnforcement = MaxLengthEnforcement.none,
-      this.onChanged,
-      this.onEditingComplete,
-      this.onSubmitted,
-      this.enabled,
-      this.cursorWidth = 2.0,
-      this.cursorRadius,
-      this.cursorColor,
-      this.keyboardAppearance,
-      this.scrollPadding = const EdgeInsets.all(20.0),
-      this.enableInteractiveSelection = true,
-      this.onTap,
-      this.buildCounter,
-      this.scrollPhysics,
-      this.scrollController,
-      this.autofillHints,
-      this.appendSpaceOnAdd = true,
-      this.hideSuggestionList = false,
-      this.onSuggestionVisibleChanged,
-      this.suggestionBoxMargin,
-      this.suggestionBoxPadding,
-      this.suggestionBoxDecoration,
-      this.removeMentionDisplayOnDelete = false})
-      : super(key: key);
+  FlutterMentions({
+    required this.mentions,
+    Key? key,
+    this.defaultText,
+    this.suggestionListHeight = 300.0,
+    this.onMarkupChanged,
+    this.onMentionAdd,
+    this.onSearchChanged,
+    this.leading = const [],
+    this.trailing = const [],
+    this.suggestionListDecoration,
+    this.focusNode,
+    this.decoration = const InputDecoration(),
+    this.keyboardType,
+    this.textInputAction,
+    this.textCapitalization = TextCapitalization.none,
+    this.style,
+    this.strutStyle,
+    this.textAlign = TextAlign.start,
+    this.textDirection,
+    this.autofocus = false,
+    this.autocorrect = true,
+    this.enableSuggestions = true,
+    this.maxLines,
+    this.minLines,
+    this.expands = false,
+    this.readOnly = false,
+    this.showCursor,
+    this.maxLength,
+    this.maxLengthEnforcement = MaxLengthEnforcement.none,
+    this.onChanged,
+    this.onEditingComplete,
+    this.onSubmitted,
+    this.enabled,
+    this.cursorWidth = 2.0,
+    this.cursorRadius,
+    this.cursorColor,
+    this.keyboardAppearance,
+    this.scrollPadding = const EdgeInsets.all(20.0),
+    this.enableInteractiveSelection = true,
+    this.onTap,
+    this.buildCounter,
+    this.scrollPhysics,
+    this.scrollController,
+    this.autofillHints,
+    this.appendSpaceOnAdd = true,
+    this.hideSuggestionList = false,
+    this.onSuggestionVisibleChanged,
+    this.suggestionBoxMargin,
+    this.suggestionBoxPadding,
+    this.suggestionBoxDecoration,
+    this.removeMentionDisplayOnDelete = false,
+    this.topScreenPadding = 0,
+  }) : super(key: key);
 
   final bool hideSuggestionList;
 
@@ -246,6 +247,9 @@ class FlutterMentions extends StatefulWidget {
 
   /// Removes complete display of mention on pressing backspace
   final bool removeMentionDisplayOnDelete;
+
+  /// Padding from the top of the screen
+  final double topScreenPadding;
 
   @override
   FlutterMentionsState createState() => FlutterMentionsState();
@@ -449,7 +453,7 @@ class FlutterMentionsState extends State<FlutterMentions> {
     // NOTE: ATM we display the suggestion box automatically based on spacing.
     // If we have enough space to display it above the text then we display it above, otherwise display it below
 
-    return spaceFromTop < widget.suggestionListHeight;
+    return (spaceFromTop + widget.topScreenPadding) < widget.suggestionListHeight;
   }
 
   void showOverlay(String textBefore) {
