@@ -404,10 +404,12 @@ class FlutterMentionsState extends State<FlutterMentions> {
         ? widget.mentions.firstWhere((element) => _selectedMention!.str.contains(element.trigger))
         : widget.mentions[0];
 
-    return PortalEntry(
-      portalAnchor: getDisplayBelow(spaceFromTop) ? Alignment.topCenter : Alignment.bottomCenter,
-      childAnchor: getDisplayBelow(spaceFromTop) ? Alignment.bottomCenter : Alignment.topCenter,
-      portal: ValueListenableBuilder(
+    return PortalTarget(
+      anchor: Aligned(
+        follower: getDisplayBelow(spaceFromTop) ? Alignment.bottomCenter : Alignment.topCenter,
+        target: getDisplayBelow(spaceFromTop) ? Alignment.topCenter : Alignment.bottomCenter,
+      ),
+      portalFollower: ValueListenableBuilder(
         valueListenable: showSuggestions,
         builder: (BuildContext context, bool show, Widget? child) {
           return show && !widget.hideSuggestionList
