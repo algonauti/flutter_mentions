@@ -406,8 +406,8 @@ class FlutterMentionsState extends State<FlutterMentions> {
 
     return PortalTarget(
       anchor: Aligned(
-        follower: getDisplayBelow(spaceFromTop) ? Alignment.bottomCenter : Alignment.topCenter,
-        target: getDisplayBelow(spaceFromTop) ? Alignment.topCenter : Alignment.bottomCenter,
+        target: getDisplayBelow(spaceFromTop) ? Alignment.bottomCenter : Alignment.topCenter,
+        follower: getDisplayBelow(spaceFromTop) ? Alignment.topCenter : Alignment.bottomCenter,
       ),
       portalFollower: ValueListenableBuilder(
         valueListenable: showSuggestions,
