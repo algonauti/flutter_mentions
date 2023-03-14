@@ -54,6 +54,7 @@ class FlutterMentions extends StatefulWidget {
     this.suggestionBoxDecoration,
     this.removeMentionDisplayOnDelete = false,
     this.topScreenPadding = 0,
+    this.visible = true,
   }) : super(key: key);
 
   final bool hideSuggestionList;
@@ -251,6 +252,9 @@ class FlutterMentions extends StatefulWidget {
   /// Padding from the top of the screen
   final double topScreenPadding;
 
+  /// This is an extra parameter to disable the suggestion box
+  final bool visible;
+
   @override
   FlutterMentionsState createState() => FlutterMentionsState();
 }
@@ -405,6 +409,7 @@ class FlutterMentionsState extends State<FlutterMentions> {
         : widget.mentions[0];
 
     return PortalTarget(
+      visible: widget.visible,
       anchor: Aligned(
         target: getDisplayBelow(spaceFromTop) ? Alignment.bottomCenter : Alignment.topCenter,
         follower: getDisplayBelow(spaceFromTop) ? Alignment.topCenter : Alignment.bottomCenter,
